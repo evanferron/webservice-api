@@ -14,15 +14,10 @@ app.use(async (ctx, next) => {
 app.use(async (ctx, next) => {
   const start = Date.now();
   await next();
+  console.log(`${ctx.method} ${ctx.path} -> ${ctx.status} (${Date.now() - debut} ms)`)
   const ms = Date.now() - start;
   ctx.set('X-Response-Time', `${ms}ms`);
 });
-
-app.use(async (ctx, next) => {
-  const debut = Date.now()
-  await next()
-  console.log(`${ctx.method} ${ctx.path} -> ${ctx.status} (${Date.now() - debut} ms)`)
-})
 
 // app.use((ctx) => {
 //   ctx.body = {
