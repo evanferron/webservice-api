@@ -54,15 +54,10 @@ router.get("/exemples", (ctx) => {
     return;
   }
   let resExamples;
-  if (bool) {
-    console.log("test");
-    resExamples = exemples.filter((e) => {
-      return e.bool;
-    });
+  if (bool === "true") {
+    resExamples = exemples.filter((e) => e.bool);
   } else
-    resExamples = exemples.filter((e) => {
-      return !e.bool;
-    });
+    resExamples = exemples.filter((e) => !e.bool);
 
   ctx.body = {
     examples: resExamples,
